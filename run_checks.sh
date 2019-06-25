@@ -1,10 +1,13 @@
-#!/bin/bash
+target="$1"
 
-target="${1:-/app/index.js}"
-filename="$(basename "${target}")"
-directory="$(dirname "${target}")"
+if [ "$target" = "" ] ; then
+  target="/app/index.js"
+fi
 
-cd "${directory}"
+filename=`basename "${target}"`
+directory=`dirname "${target}"`
+
+cd "$directory"
 npm install
 
-node --check "${filename}" && npm-audit && npm-check && npm-lint
+node --check "$filename" && npm-audit && npm-check && npm-lint
