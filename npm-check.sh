@@ -5,6 +5,6 @@ function npm-check {
   filename="$(basename "${target}")"
   directory="$(dirname "${target}")"
   prefix="${prefix:-/app/}"
-
-  docker run -it --rm -v "${directory}":"${prefix}" wesleydean/npm-check-docker "${prefix}${filename}"
+  script="${script:-/usr/local/bin/run_checks.sh}"
+  docker run -it --rm -v "${directory}":"${prefix}" wesleydean/npm-check-docker "${script}" "${prefix}${filename}"
 }
